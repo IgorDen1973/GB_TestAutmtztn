@@ -1,5 +1,7 @@
 package ru.geekbrains.features.counter_parties;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.base.BaseUITest;
 import ru.geekbrains.common.Configuration;
@@ -8,7 +10,10 @@ import ru.geekbrains.enums.NavigationBarTabs;
 import ru.geekbrains.pages.CounterPartiesPage;
 import ru.geekbrains.pages.LoginPage;
 
+@Feature("New Company Creation")
 public class NewCompanyTest extends BaseUITest {
+
+    @Story("Создание новой организации")
     @Test
     public void createNewCompanyPositiveTest() {
         CounterPartiesPage companyFrame = (CounterPartiesPage) new LoginPage(driver)

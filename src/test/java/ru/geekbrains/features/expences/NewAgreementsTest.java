@@ -1,5 +1,7 @@
 package ru.geekbrains.features.expences;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.base.BaseUITest;
 import ru.geekbrains.common.Configuration;
@@ -8,7 +10,10 @@ import ru.geekbrains.enums.NavigationBarTabs;
 import ru.geekbrains.pages.AllExpensesPage;
 import ru.geekbrains.pages.LoginPage;
 
+@Feature("New HouseHold Agreement Creation")
 public class NewAgreementsTest extends BaseUITest {
+
+    @Story("Создание хозяйственного договора")
     @Test
     public void createNewAgrementPositiveTest() {
         AllExpensesPage agreementFrame = (AllExpensesPage) new LoginPage(driver)

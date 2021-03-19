@@ -1,4 +1,5 @@
 package ru.geekbrains.pages;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import ru.geekbrains.base.BaseView;
@@ -12,6 +13,7 @@ public class HomePage extends BaseView {
         this.navigationBar = new NavigationBar(driver);
     }
 
+    @Step(value = "Проверить URL'")
     public void checkUrl(String url) {
 
         assertEquals(driver.getCurrentUrl(), url);

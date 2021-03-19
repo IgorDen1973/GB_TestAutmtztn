@@ -1,5 +1,6 @@
 package ru.geekbrains.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,13 +21,15 @@ public class ProjectsPage extends BaseView {
         super(driver);
     }
 
+    @Step(value = "Нажать на кнопку 'Создать проект'")
     public NewProjectPage clickOnCreateNewProjectButton() {
         createNewProjectButton.click();
         return new NewProjectPage(driver);
     }
 
+    @Step(value = "Проверить появление баннера 'Проект сохранен'")
     public ProjectsPage checkNewProjectPopUp() {
-        String message = wait10second.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+        String message = wait30second.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
                 "div[class='message']"))).getText();
         assertTrue(message.contains("Проект сохранен"));
         return this;

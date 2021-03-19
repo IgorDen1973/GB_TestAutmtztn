@@ -1,5 +1,6 @@
 package ru.geekbrains.views;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -14,7 +15,7 @@ public class NavigationBar extends BaseView {
 
         super(driver);
     }
-
+    @Step(value = "Навести мышкой на элемент основного меню навигации")
     public SubMenu moveCursorToNavigationTab(NavigationBarTabs tab) {
         Actions actions = new Actions(driver);
         actions
@@ -33,6 +34,7 @@ public class NavigationBar extends BaseView {
         }
     }
 
+    @Step(value = "Проверить появление элемента меню навигации")
     public NavigationBar checkTabVisibility(NavigationBarTabs tab) {
         Assertions.assertTrue(driver.findElement(tab.getBy()).isDisplayed());
         return this;

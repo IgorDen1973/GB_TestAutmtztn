@@ -1,5 +1,6 @@
 package ru.geekbrains.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,26 +25,29 @@ public class AllExpensesPage extends BaseView {
         super(driver);
     }
 
+    @Step(value = "Нажать на кнопку 'Создать заявку на расход'")
     public NewExpensePage clickOnCreateNewExpenseButton() {
         createNewExpenseButton.click();
         return new NewExpensePage(driver);
     }
 
+    @Step(value = "Нажать на кнопку 'Новый хозяйственный договор'")
     public NewHouseAgreementPage clickOnCreateNewHouseAgreementButton() {
         createNewHouseHoldAgreementButton.click();
         return new NewHouseAgreementPage(driver);
     }
 
-
+    @Step(value = "Появление баннера 'Заявка на расход сохранена'")
     public AllExpensesPage checkNewExpensePopUp() {
-        String message = wait10second.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+        String message = wait30second.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
                 "div[class='message']"))).getText();
         assertTrue(message.contains("Заявка на расход сохранена"));
         return this;
     }
 
+    @Step(value = "Появление баннера 'Договор сохранен'")
     public AllExpensesPage checkNewHouseAgreementPopUp() {
-        String message = wait10second.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+        String message = wait30second.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
                 "div[class='message']"))).getText();
         assertTrue(message.contains("Договор сохранен"));
         return this;

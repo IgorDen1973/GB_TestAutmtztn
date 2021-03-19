@@ -1,5 +1,6 @@
 package ru.geekbrains.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,7 @@ public class NewExpensePage extends BaseView {
     @FindBy(xpath = ".//div[preceding-sibling::div[child::label[@class='required']]]//input[@class='datepicker-input  hasDatepicker']")
     private WebElement calendarView;
 
+
     @FindBy(css = "button[class='btn btn-success action-button']")
     private WebElement submitButton;
 
@@ -35,35 +37,40 @@ public class NewExpensePage extends BaseView {
         super(driver);
     }
 
+    @Step(value = "Ввести данные в поле 'Назначение'")
     public NewExpensePage enterDescription(String description) {
         descriptionTextInput.sendKeys(description);
         return this;
     }
-    // TODO: improve input with ENUM
+
+    @Step(value = "Выбрать значение в меню 'Подразделение'")
     public NewExpensePage selectBusinessUnit(int value) {
         Select businessUnitDropDown = new Select(businessUnitDropDownSelect);
         businessUnitDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
-    // TODO: improve input with ENUM
+    @Step(value = "Выбрать значение в меню 'Статья расхода'")
     public NewExpensePage selectExpenditure(int value) {
         Select expenditureDropDown = new Select(expenditureDropDownSelect);
         expenditureDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Запрашиваемая сумма'")
     public NewExpensePage setExpenseSum(int sum) {
         expenseRequestSumTextInput.clear();
         expenseRequestSumTextInput.sendKeys(String.valueOf(sum));
         return this;
     }
 
+    @Step(value = "Поставить флажок в чекбоксе 'Уведомлять при переносе даты оплаты'")
     public NewExpensePage clickNotifyDateChangedCheckBox() {
         notifyDateHasChanged.click();
         return this;
     }
 
+    @Step(value = "Выбрать и установить значение в меню 'Планируемая дата'")
     public NewExpensePage selectDateInDatePicker(int day) {
         calendarView.click();
         String xpath = String.format(".//a[text()='%d']", day);
@@ -71,6 +78,7 @@ public class NewExpensePage extends BaseView {
         return this;
     }
 
+    @Step(value = "Нажать на кнопку 'Сохранить и закрыть'")
     public AllExpensesPage clickSubmit() {
         submitButton.click();
         return new AllExpensesPage(driver);

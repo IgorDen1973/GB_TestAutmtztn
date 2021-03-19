@@ -1,5 +1,6 @@
 package ru.geekbrains.views;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import ru.geekbrains.base.BaseView;
 import ru.geekbrains.base.SubMenu;
@@ -14,6 +15,7 @@ public class ProjectsSubMenu extends SubMenu {
     }
 
     @Override
+    @Step(value = "Кликнуть на элемент сабменю из 'Проекты'")
     public BaseView clickSubMenuButton(SubMenuButtons buttons) {
         if (buttons instanceof ProjectSubMenuButtons) {
             switch ((ProjectSubMenuButtons) buttons) {

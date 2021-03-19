@@ -1,6 +1,6 @@
 package ru.geekbrains.pages;
 
-import org.openqa.selenium.By;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,6 +40,7 @@ public class NewHouseAgreementPage extends BaseView {
         super(driver);
     }
 
+    @Step(value = "Ввести данные в поле 'Нименование'")
     public NewHouseAgreementPage enterHouseAgreementName() {  // сделал Имя Договора случайным
         Random r = new Random();
         int x = r.nextInt(100 - 50);
@@ -48,34 +49,40 @@ public class NewHouseAgreementPage extends BaseView {
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Номер договора'")
     public NewHouseAgreementPage enterHouseAgreementNumber(String number) {
        newAgreementNumberTextInput.sendKeys(number);
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Комментарий'")
     public NewHouseAgreementPage enterHouseAgreementComment(String comment) {
         newAgreementCommentsTextInput.sendKeys(comment);
         return this;
     }
 
+    @Step(value = "Выбрать и установить значение в меню 'Дата подписания'")
     public NewHouseAgreementPage chooseNewAgreementDate() {
         newAgreementDateFieldOpen.click();
         newAgreementDateChoose.click();
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Подрядчик'")
     public NewHouseAgreementPage selectContractor(int value) {
         Select contractorDropDown = new Select(domcontractDropDownSelect);
         contractorDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Статья расхода'")
     public NewHouseAgreementPage selectExpenditure(int value) {
         Select expenditureDropDown = new Select(expenditureDropDownSelect);
         expenditureDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Нажать на кнопку 'Сохранить и закрыть'")
     public AllExpensesPage clickSubmit() {
         submitButton.click();
         return new AllExpensesPage(driver);

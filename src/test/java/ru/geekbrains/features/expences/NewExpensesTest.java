@@ -1,5 +1,8 @@
 package ru.geekbrains.features.expences;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.base.BaseUITest;
 import ru.geekbrains.base.SubMenu;
@@ -12,9 +15,10 @@ import ru.geekbrains.pages.LoginPage;
 import ru.geekbrains.pages.NewExpensePage;
 import ru.geekbrains.views.NavigationBar;
 
+@Feature("New Expenses Creation")
 public class NewExpensesTest extends BaseUITest {
 
-
+    @Story("Создание заявки на расход")
     @Test
     public void createNewExpensePositiveTest() {
         AllExpensesPage expensesScreen = (AllExpensesPage) new LoginPage(driver) // создали объект loginPage
@@ -36,6 +40,7 @@ public class NewExpensesTest extends BaseUITest {
     }
 
     @Test
+    @Disabled
     public void createNewExpensePositiveTest2() {  // альтернативное написание
         LoginPage lp = new LoginPage(driver);
         HomePage hp = lp.authoriseScenario(Configuration.STUDENT_LOGIN, Configuration.STUDENT_PASSWORD);
@@ -57,19 +62,20 @@ public class NewExpensesTest extends BaseUITest {
         expensesScreen.checkNewExpensePopUp();
     }
 
-    @Test
-    public void createNewBContractExpensePositiveTest() {
-        AllExpensesPage expensesScreen = (AllExpensesPage) new LoginPage(driver)
-                .authoriseScenario(Configuration.STUDENT_LOGIN, Configuration.STUDENT_PASSWORD)
-                .getPageNavigation()
-                .moveCursorToNavigationTab(NavigationBarTabs.EXPENSES)
-                .clickSubMenuButton(ExpenseSubMenuButtons.BUSINESS_CONTRACTS);
-
-        try {
-            Thread.sleep(9000);
-
-        }catch (Exception e){
-        }
-    }
+//    @Test
+//    @Disabled
+//    public void createNewBContractExpensePositiveTest() {
+//        AllExpensesPage expensesScreen = (AllExpensesPage) new LoginPage(driver)
+//                .authoriseScenario(Configuration.STUDENT_LOGIN, Configuration.STUDENT_PASSWORD)
+//                .getPageNavigation()
+//                .moveCursorToNavigationTab(NavigationBarTabs.EXPENSES)
+//                .clickSubMenuButton(ExpenseSubMenuButtons.BUSINESS_CONTRACTS);
+//
+//        try {
+//            Thread.sleep(9000);
+//
+//        }catch (Exception e){
+//        }
+//    }
 
 }

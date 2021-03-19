@@ -1,5 +1,7 @@
 package ru.geekbrains.pages;
 
+import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -65,94 +67,109 @@ public class NewCompanyPage extends BaseView {
         super(driver);
     }
 
-    public NewCompanyPage enterNewCompanyName() {  // сделал Имя Компании случайным
-        Random r = new Random();
-        int x = r.nextInt(100 - 50);
-        String name = "JSC BigMac#__"+x;
-        companyNameNewCompanyTextInput.sendKeys(name);
+    @Step("Ввести данные в поле 'Название'")
+    public NewCompanyPage enterNewCompanyName() {
+        Faker coName = new Faker();                // сделал Имя Компании случайным
+        companyNameNewCompanyTextInput.sendKeys(coName.company().name());
         return this;
     }
 
+    @Step("Ввести данные в поле 'Краткое название'")
     public NewCompanyPage enterNewCompanyShortName(String firstName) {
         companyShortNameNewCompanyTextInput.sendKeys(firstName);
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Форма собственности'")
     public NewCompanyPage selectOwnershipType(int value) {
         Select ownershipTypeDropDown = new Select(ownershipTypeDropDownSelect);
         ownershipTypeDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Статус'")
     public NewCompanyPage selectCompanyStatus(int value) {
         Select companyStatusDropDown = new Select(statusDropDownSelect);
         companyStatusDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Поставить флажок в чекбоксе 'Тип организации'")
     public NewCompanyPage defineOfNewCompanyType() {
         typeOfCompanyCheckBox.click();
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Отрасль'")
     public NewCompanyPage selectIndustryType(int value) {
         Select industryTypeDropDown = new Select(industryDropDownSelect);
         industryTypeDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Активировать появление окна 'Адреса'")
     public NewCompanyPage addressNewCompanyFieldActivation() {
         addressNewCompanyFieldActivation.click();
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Улица'")
     public NewCompanyPage enterNewCompanyStreetAddress(String address) {
         streetAddressNewCompanyTextInput.sendKeys(address);
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Дом'")
     public NewCompanyPage enterNewCompanyBuildingAddress(String building) {
         buildingAddressNewCompanyTextInput.sendKeys(building);
         return this;
     }
 
+    @Step(value = "Активировать появление окна 'Телефоны'")
     public NewCompanyPage telephoneNewCompanyFieldActivation() {
         telephoneNewCompanyFieldActivation.click();
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Укажите тип'")
     public NewCompanyPage selectPhoneType(String phone_type) {
         Select phoneTypeDropDown = new Select(phoneTypeDropDownSelect);
         phoneTypeDropDown.selectByValue(phone_type);
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Код'")
     public NewCompanyPage enterNewCompanyPrefixCode(String prefix_code) {
         prefixCodePhoneTextInput.sendKeys(prefix_code);
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Номер'")
     public NewCompanyPage enterNewCompanyPhone(String phone) {
         phonePhoneTextInput.sendKeys(phone);
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'Доб.'")
     public NewCompanyPage enterNewCompanyInternalCode(String internal_code) {
         internalCodePhoneTextInput.sendKeys(internal_code);
         return this;
     }
 
+    @Step(value = "Ввести данные в поле 'E-mail'")
     public NewCompanyPage enterNewCompanyEmail(String e_mail) {
         emailNewCompanyTextInput.sendKeys(e_mail);
         return this;
     }
 
+    @Step(value = "Выбрать значение в меню 'Менеджер'")
     public NewCompanyPage selectNewCompanyManager(int value) {
         Select newCompanyManagerDropDown = new Select(managerNewCompanyDropDownSelect);
         newCompanyManagerDropDown.selectByValue(String.valueOf(value));
         return this;
     }
 
+    @Step(value = "Нажать на кнопку 'Сохранить и закрыть'")
     public CounterPartiesPage clickSubmit() {
         submitButton.click();
         return new CounterPartiesPage(driver);

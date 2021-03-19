@@ -1,18 +1,19 @@
 package ru.geekbrains.features.counter_parties;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.base.BaseUITest;
 import ru.geekbrains.common.Configuration;
 import ru.geekbrains.enums.CounterPartiesSubMenuButtons;
-import ru.geekbrains.enums.ExpenseSubMenuButtons;
 import ru.geekbrains.enums.NavigationBarTabs;
-import ru.geekbrains.enums.ProjectSubMenuButtons;
-import ru.geekbrains.pages.AllExpensesPage;
 import ru.geekbrains.pages.CounterPartiesPage;
 import ru.geekbrains.pages.LoginPage;
-import ru.geekbrains.pages.ProjectsPage;
 
+@Feature("New Counterpartie Creation")
 public class NewCounterPartiesTest extends BaseUITest {
+
+    @Story("Создание нового контрагента")
     @Test
     public void createNewCounterPartiesPositiveTest() {
         CounterPartiesPage counterPartiesFrame = (CounterPartiesPage) new LoginPage(driver)
